@@ -1,0 +1,37 @@
+#table {
+    width: 360px;
+    margin: 5% 0px;
+}
+.tableRow {
+    display: grid;
+    grid-template-columns: repeat(9,40px);
+}
+.tile {
+   border: 1px solid #DCD6D3; /* Use outline instead of border */
+    
+    text-align: center;
+    line-height: 40px;
+    font-size: 30px;
+   
+}
+#row-2, #row-5 {
+    border-bottom: 2px solid #DCD6D3; /*it seem like 3px beacase 2px +1px+1px from each title border top and bottom*/
+  }
+#row-0 {
+    border-top: 3px solid #DCD6D3;
+}
+#row-8 {
+    border-bottom: 3px solid #DCD6D3;
+}
+.col-2,.col-5 {
+    border-right: 3px solid #DCD6D3;
+}
+.col-0 {
+    border-left: 3px solid #DCD6D3;
+}
+.col-8 {
+    border-right: 3px solid #DCD6D3;
+}
+.isActive {
+    background-color: #919191;
+}
