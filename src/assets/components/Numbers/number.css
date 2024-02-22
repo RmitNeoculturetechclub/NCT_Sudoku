@@ -1,17 +1,18 @@
 button {
     border: none;
     text-align: center;
-    line-height: 40px;
-    font-size: 30px;
-    width: 40px;
+    line-height: 60px;
+    font-size: 50px;
+    width: 60px;
     font-weight: 500;
     font-family: inherit;
     cursor: pointer;
     transition: border-color 0.25s;
     background-color: #DBDBDA;
+    margin: 0px 5px;
   }
   button:hover {
-   color: #646cff;
+   color: #BABAB9;
   }
  
   #numberContainer {
@@ -19,6 +20,5 @@ button {
     overflow: hidden; /* Clip the content to prevent overflow */
     background-color:#DBDBDA;
     display:  flex;
-    width: 400px;
     justify-content: center;
   }

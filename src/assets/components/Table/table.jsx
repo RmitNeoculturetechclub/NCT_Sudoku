@@ -17,17 +17,20 @@ function Table() {
   }, []); 
 
   const handleClick = (e) => {
-    clearActiveClasses();
+    clearActiveAndSelectClasses();
     hightlightColumTable(e);
     hightlightRowTable(e);
     highlightSmallTable(e);
+    highlightSelect(e);
   };
   
-  const clearActiveClasses = () => {
+  const clearActiveAndSelectClasses = () => {
     const listActive = document.getElementsByClassName("isActive");
     [...listActive].forEach((element) => {
       element.classList.remove("isActive");
     });
+    const selectClass = document.getElementsByClassName("isSelect")[0];
+    selectClass && selectClass.classList.remove("isSelect"); // if selectClass not null, clear the previous one
   };
   
   const hightlightColumTable = (e) => {
@@ -62,6 +65,9 @@ function Table() {
     }
   };
 
+  const highlightSelect = (e)=> {
+    e.target.classList.add("isSelect")
+  }
   // Template 
   if (!data) {
     return <div>Loading...</div>;
