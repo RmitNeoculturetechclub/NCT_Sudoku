@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:regular,bold,italic&subset=latin,latin-ext');
 
 body {
   margin: 0;
@@ -8,12 +8,13 @@ body {
   min-width: 320px;
   min-height: 100vh;
   background-color: #C1BCB9;
-  font-family: "Noto Sans", sans-serif;
+  font-family: "Oswald", sans-serif;
 }
 
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+  font-style: normal;
 }
 
 

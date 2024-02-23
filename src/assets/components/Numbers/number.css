@@ -2,14 +2,14 @@ button {
     border: none;
     text-align: center;
     line-height: 60px;
-    font-size: 50px;
+    font-size: 40px;
     width: 60px;
     font-weight: 500;
     font-family: inherit;
     cursor: pointer;
     transition: border-color 0.25s;
     background-color: #DBDBDA;
-    margin: 0px 5px;
+    margin: 0px 2px;
   }
   button:hover {
    color: #BABAB9;

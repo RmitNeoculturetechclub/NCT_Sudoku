@@ -4,13 +4,13 @@
 }
 .tableRow {
     display: grid;
-    grid-template-columns: repeat(9,65px);
+    grid-template-columns: repeat(9,55px);
 }
 .tile {
    border: 2px solid #DCD6D3; /* Use outline instead of border */
     text-align: center;
-    height: 60px;
-    font-size: 50px;
+    height: 50px;
+    font-size: 40px;
    
 }
 #row-2, #row-5 {
