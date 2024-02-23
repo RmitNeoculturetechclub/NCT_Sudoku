@@ -3,14 +3,18 @@
     margin: 2% 0px;
 }
 .tableRow {
-    display: grid;
-    grid-template-columns: repeat(9,55px);
+    display: flex;
+    
 }
 .tile {
    border: 2px solid #DCD6D3; /* Use outline instead of border */
-    text-align: center;
+   display: flex;
+   justify-content: center;
+   align-items: center;
     height: 50px;
     font-size: 40px;
+    width: 50px;
+    padding: 0px;
    
 }
 #row-2, #row-5 {
@@ -26,10 +30,10 @@
     border-right: 6px solid #DCD6D3;
 }
 .col-0 {
-    border-left: 6px solid #DCD6D3;
+    border-left: 8px solid #DCD6D3;
 }
 .col-8 {
-    border-right: 6px solid #DCD6D3;
+    border-right: 8px solid #DCD6D3;
 }
 .isActive {
     background-color: #919191;
