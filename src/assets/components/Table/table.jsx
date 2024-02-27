@@ -1,21 +1,36 @@
 import React, { useState, useEffect } from 'react';
 import "./table.css"
-function Table() {
+function Table({pressNumber}) {
 
-  const [data, setData] = useState(null); // Initialize state for the fetched data
+  const [data, setData] = useState(); // Initialize state for the fetched data
 
   useEffect(() => {
-    fetch('https://sudoku-api.vercel.app/api/dosuku?query={newboard(limit:1){grids{value,solution,difficulty}}}')
+    fetch('https://sugoku.onrender.com/board?difficulty=easy')
       .then(response => response.json())
-      .then(data => {
-        setData(data);
-        console.log(data.newboard.grids[0].difficulty)
+      .then(board => {setData(prev=>({...prev, value:board}));
+        return board
       })
+      .then(board=>(
+        fetch('https://sugoku.onrender.com/solve', {
+        method: 'POST',
+        body: encodeParams(board),
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+        })
+        // .then(()=>console.log("post game data"))
+        .then(response => response.json())
+        .then(response => setData(prev=>({...prev,answer: response})))
+        .catch(console.warn)
+      ))
       .catch(error => {
         console.error('Error fetching data:', error);
       });
-  }, []); 
-
+  }, []);
+  
+  function encodeParams(params) {
+    return Object.keys(params)
+      .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(JSON.stringify(params[key])))
+      .join('&');
+  }
   const handleClick = (e) => {
     clearActiveAndSelectClasses();
     hightlightColumTable(e);
@@ -68,11 +83,41 @@ function Table() {
   const highlightSelect = (e)=> {
     e.target.classList.add("isSelect")
   }
+
+  function encodeParams(params) {
+  return Object.keys(params)
+    .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(JSON.stringify(params[key])))
+    .join('&');
+}
+  
   // Template 
   if (!data) {
     return <div>Loading...</div>;
   }
-  const tableContent = data.newboard.grids[0].value.map((row, rowIndex) =>
+  // Fill the number press in the box or set emty when press return
+  if(pressNumber) {
+    const selectBox = document.querySelector(`#row-${pressNumber.row}`).querySelector(`.col-${pressNumber.colum}`);
+    selectBox.innerHTML = pressNumber.value;
+    if(!pressNumber.value){
+      selectBox.classList.remove("falseAnswer")
+    }
+  }
+  // Check if the answer is correct
+  if(pressNumber && pressNumber.value){
+    const rigntAnswer = data.answer.solution[pressNumber.row][pressNumber.colum]
+    if(rigntAnswer == pressNumber.value){
+      console.log("true");
+      const selectBox = document.querySelector(`#row-${pressNumber.row}`).querySelector(`.col-${pressNumber.colum}`);
+      selectBox.classList.add("trueAnswer")
+    }
+    else{
+     console.log("false");
+     const selectBox = document.querySelector(`#row-${pressNumber.row}`).querySelector(`.col-${pressNumber.colum}`);
+     selectBox.classList.add("falseAnswer")
+     }
+  }
+
+  const tableContent = data.value.board.map((row, rowIndex) =>
     <div key={rowIndex} className='tableRow'id={`row-${rowIndex}`}>
       {row.map((value, colIndex) =>
         <div key={colIndex} className={`tile col-${colIndex}`}  onClick={(e) => handleClick(e)}>
@@ -82,7 +127,7 @@ function Table() {
     </div>
   );
 
-  return <div id='table'>{tableContent}</div>;
+  return <><div id='table'>{tableContent}</div><button onClick={()=>(console.log(data))} className='tile'></button></>;
 }
 
 export default Table;

@@ -7,12 +7,12 @@
     
 }
 .tile {
-   border: 2px solid #DCD6D3; /* Use outline instead of border */
-   display: flex;
-   justify-content: center;
-   align-items: center;
+    border: 2px solid #DCD6D3; /* Use outline instead of border */
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 50px;
-    font-size: 40px;
+    font-size: 30px;
     width: 50px;
     padding: 0px;
    
@@ -40,4 +40,11 @@
 }
 .isSelect {
     background-color: #5D5C5C;
+}
+
+.falseAnswer {
+    color: #D22027;
+}
+.trueAnswer {
+    color: #7BD2F6;
 }
