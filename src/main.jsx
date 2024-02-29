@@ -1,10 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
 import './index.css'
-
+import Header from './assets/components/Header/header'
+import Table from './assets/components/Table/table'
+import Numbers from './assets/components/Numbers/number'
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <>
+    <Header></Header>
+    <Table></Table>
+    <Numbers></Numbers>
+  </>,
 )
+

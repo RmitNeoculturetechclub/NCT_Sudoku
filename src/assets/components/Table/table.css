@@ -1,0 +1,43 @@
+#table {
+    /* width: 360px; */
+    margin: 2% 0px;
+}
+.tableRow {
+    display: flex;
+    
+}
+.tile {
+   border: 2px solid #DCD6D3; /* Use outline instead of border */
+   display: flex;
+   justify-content: center;
+   align-items: center;
+    height: 50px;
+    font-size: 30px;
+    width: 50px;
+    padding: 0px;
+   
+}
+#row-2, #row-5 {
+    border-bottom: 3px solid #DCD6D3; /*it seem like 3px beacase 2px +1px+1px from each title border top and bottom*/
+  }
+#row-0 {
+    border-top: 6px solid #DCD6D3;
+}
+#row-8 {
+    border-bottom: 6px solid #DCD6D3;
+}
+.col-2,.col-5 {
+    border-right: 6px solid #DCD6D3;
+}
+.col-0 {
+    border-left: 8px solid #DCD6D3;
+}
+.col-8 {
+    border-right: 8px solid #DCD6D3;
+}
+.isActive {
+    background-color: #919191;
+}
+.isSelect {
+    background-color: #5D5C5C;
+}
