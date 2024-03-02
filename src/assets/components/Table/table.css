@@ -48,3 +48,18 @@
 .trueAnswer {
     color: #7BD2F6;
 }
+
+.tile:empty {
+    justify-content: center;
+    align-items: center;
+}
+
+.tile:not(:empty) {
+    flex-wrap: wrap;
+}
+.noteNumber{
+    width: 16px;
+    height: 16px;
+    font-size: 15px;
+    display: none;
+}

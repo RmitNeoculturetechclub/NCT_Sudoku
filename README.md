@@ -12,3 +12,15 @@ npm install
 
 To run:
 npm run dev
+
+Components:
+- UI:
+    + Header (don gian)
+    + TableSection (Co the note vao tung o)
+    + Numbers
+
+    + Difficulty
+    + Action (Back, Hints, New Game)
+    + Note (***)
+
+    (1.5 weeks)
