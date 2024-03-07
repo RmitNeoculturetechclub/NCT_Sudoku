@@ -37,13 +37,50 @@
     padding: 12px;
     background-color: rgb(225 225 225);
     color: rgb(127 127 127);
+    cursor: pointer;
 }
 
-/* .btnFunc__hint {
+.btnFunc__hint {
+    position: relative;
+}
+
+.hint__badge {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: absolute;
-    left: 0;
-    top: 0;
-} */
+    top: -6px;
+    right: -6px;
+    color: rgb(225 225 225);
+    background: rgb(127 127 127);
+    font-size: 16px;
+    height: 20px;
+    width: 20px;
+    font-size: 10px;
+    font-weight: 500;
+    border-radius: 50%;
+}
+
+.btnFunc__note {
+    position: relative;
+    outline: 3px solid rgb(127 127 127);
+}
+
+.note__badge {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    color: rgb(225 225 225);
+    background: rgb(127 127 127);
+    font-size: 16px;
+    height: 20px;
+    width: 20px;
+    font-size: 8px;
+    border-radius: 50%;   
+}
 
 .btnFunc__newGame {
     display: flex;
@@ -53,4 +90,8 @@
     border-radius: 999px;
     padding: 0 24px;
     font-weight: 600;
+}
+
+.btnFunc__img:hover, .note__badge:hover, .hint__badge:hover {
+    color: #BABAB9;
 }

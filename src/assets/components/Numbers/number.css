@@ -10,7 +10,7 @@ button {
     transition: border-color 0.25s;
     background-color: #DBDBDA;
     margin: 0px 2px;
-  }
+  } 
   button:hover {
    color: #BABAB9;
   }
