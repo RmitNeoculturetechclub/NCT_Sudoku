@@ -1,3 +1,5 @@
+import './header.css';
+
 function Header () {
  return(<h1>SUDOKU</h1>)
 }
