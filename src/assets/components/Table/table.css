@@ -11,9 +11,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 42px;
-  font-size: 26px;
-  width: 42px;
+  height: 45px;
+  width: 45px;
+  font-size: 24px;
   padding: 0px;
 }
 #row-2,

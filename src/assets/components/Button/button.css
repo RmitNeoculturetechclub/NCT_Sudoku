@@ -1,97 +1,40 @@
 * {
-    --duration: .45s ;
-    --cubic: cubic-bezier(0.4, 0, 0.2, 1) ;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
+
 .btnDiff {
-    padding: 0 24px 0 0;
-    display: flex;
-    width: 380px;
-    justify-content: space-between;
-    align-items: center;
-    border: 2px solid #ccc;
-    border-radius: 999px;
-    font-weight: 600;
-    user-select: none;
+  padding: 0 24px 0 0;
+  display: flex;
+  width: 400px;
+  height: 46px;
+  justify-content: space-between;
+  align-items: center;
+  border: 2px solid #ccc;
+  border-radius: 999px;
+  font-weight: 600;
+  user-select: none;
 }
 
 .btnDiff__i1 {
-    background-color: rgb(127 127 127);
-    color: rgb(225 225 225);
-    padding: 12px 22px;
-    outline: 2px solid rgb(127 127 127);
-    border-radius: 999px;
-    font-weight: 500;
+  background-color: rgb(127 127 127);
+  color: rgb(225 225 225);
+  padding: 12px 20px;
+  outline: 2px solid rgb(127 127 127);
+  border-radius: 999px;
+  font-weight: 500;
 }
 
-.btnFunc__wrap {
-    position: relative;
-    margin: 16px 0 12px;
-    display: flex;
+.btn__item:hover button {
+  background-color: #d4d4d8;
 }
 
-.btn__item {
-    all: unset ;
-    flex-grow: 1 ;
-    display: flex ;
-    padding: 6px 0;
-    position: relative ;
-    align-items: center ;
-    justify-content: space-between ;
-    cursor: pointer ;
+.btn__item3 {
+  outline: 2px solid rgb(127 127 127);
 }
 
-.btnFunc__img {
-    display: flex;
-    height: 30px;
-    width: 30px;
-    border-radius: 50%;
-    padding: 10px;
-    background-color: rgb(225 225 225);
-    color: rgb(127 127 127);
-}
-
-.btnFunc__hint {
-    position: relative;
-}
-
-.hint__badge {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    top: -6px;
-    right: -6px;
-    color: rgb(225 225 225);
-    background: rgb(127 127 127);
-    font-size: 16px;
-    height: 20px;
-    width: 20px;
-    font-size: 10px;
-    font-weight: 500;
-    border-radius: 50%;
-    user-select: none;
-}
-
-.btnFunc__note {
-    position: relative;
-    left: 3px;
-    outline: 3px solid rgb(127 127 127);
-}
-
-.note__badge {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    top: -6px;
-    right: -6px;
-    color: rgb(225 225 225);
-    background: rgb(127 127 127);
-    font-size: 16px;
-    height: 20px;
-    width: 20px;
-    font-size: 8px;
-    border-radius: 50%;
-    user-select: none;
+.btn__item:not(:hover) .btn__text {
+  overflow: hidden;
 }

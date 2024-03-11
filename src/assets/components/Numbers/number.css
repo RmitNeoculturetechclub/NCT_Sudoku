@@ -2,17 +2,16 @@ button {
     border: none;
     text-align: center;
     line-height: 36px;
-    font-size: 22px;
-    width: 42px;
+    font-size: 20px;
+    width: 46px;
     font-weight: 500;
     cursor: pointer;
     transition: border-color 0.25s;
     background-color: #DBDBDA;
-    margin: 0px 2px;
   }
   
   button:hover {
-   color: #BABAB9;
+   color: #c1bcb9;
   }
  
   #numberContainer {
