@@ -27,14 +27,34 @@
   font-weight: 500;
 }
 
+.btnDiff__i2:hover {
+  color: rgb(127 127 127);
+  transition: ease 300ms linear;
+}
+
 .btn__item:hover button {
   background-color: #d4d4d8;
+}
+
+.btn__item:not(:hover) .btn__text {
+  overflow: hidden;
+  opacity: 0;
+}
+
+.btn__item:hover:not(.btn__item:last-of-type) .btn__item:last-of-type{
+  background-color: red;
 }
 
 .btn__item3 {
   outline: 2px solid rgb(127 127 127);
 }
 
-.btn__item:not(:hover) .btn__text {
-  overflow: hidden;
+.btn__item4:hover button {
+  background-color: #d4d4d8;
 }
+
+.btn__item4:not(:hover) button {
+  background-color: #d4d4d8;
+}
+
+

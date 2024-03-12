@@ -9,9 +9,9 @@ function Button() {
         <div className="btnDiff__i2">Medium</div>
         <div className="btnDiff__i2">Hard</div>
       </div>
-      <div className="btnFunc__wrap mt-4 flex w-[400px] cursor-pointer select-none items-center justify-around gap-6">
+      <div className="btnFunc__wrap mt-4 mb-2 flex w-[400px] cursor-pointer select-none items-center justify-around gap-6">
         {/* Btn item 1  */}
-        <div className="btn__item group flex items-center gap-1 rounded-full bg-[#DBDBDA] py-[10px] pl-[10px] pr-[6px] hover:bg-[#d4d4d8]">
+        <div className="btn__item group truncate flex items-center gap-1 rounded-full bg-[#DBDBDA] py-[10px] pl-[10px] pr-[6px] hover:bg-[#d4d4d8]">
           <button className="btn__icon btnFunc__img btnFunc__reverse w-fit rounded-full">
             <div className="h-7 w-7 text-[#7F7F7F]">
               <svg
@@ -65,7 +65,7 @@ function Button() {
               </svg>
             </div>
           </button>
-          <div className="duration-[250ms] w-0 text-[#7F7F7F] opacity-0 transition-all group-hover:ml-1 group-hover:w-10 group-hover:opacity-100">
+          <div className="btn__text duration-[250ms] w-0 text-[#7F7F7F] opacity-0 transition-all group-hover:ml-1 group-hover:w-10 group-hover:opacity-100">
             Note
           </div>
 
@@ -75,7 +75,7 @@ function Button() {
         </div>
 
         {/* Btn item 4  */}
-        <div className="btn__item group flex items-center gap-1 truncate rounded-full bg-[#DBDBDA] py-[10px] pl-[10px] pr-[6px] hover:bg-[#d4d4d8]">
+        <div className="btn__item btn__item4 group flex items-center gap-1 truncate rounded-full py-[10px] pl-[10px] pr-[6px] bg-[#d4d4d8] hover:bg-[#d4d4d8]">
           <button className="btn__icon btnFunc__img w-fit rounded-full">
             <div className="flex h-7 w-7 items-center justify-center text-[#7F7F7F]">
               <svg
@@ -87,7 +87,7 @@ function Button() {
               </svg>
             </div>
           </button>
-          <div className="duration-[250ms] w-0 text-[#7F7F7F] opacity-0 transition-all group-hover:ml-1 group-hover:w-[78px] group-hover:opacity-100">
+          <div className="btn_text4 duration-[250ms] text-[#7F7F7F] transition-all ml-1 w-[78px] opacity-100">
             New game
           </div>
         </div>
