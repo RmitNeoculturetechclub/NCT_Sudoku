@@ -39,6 +39,16 @@
 .btn__item:not(:hover) .btn__text {
   overflow: hidden;
   opacity: 0;
+
+.btnFunc__img {
+    display: flex;
+    height: 28px;
+    width: 28px;
+    border-radius: 50%;
+    padding: 12px;
+    background-color: rgb(225 225 225);
+    color: rgb(127 127 127);
+    cursor: pointer;
 }
 
 .btn__item:hover:not(.btn__item:last-of-type) .btn__item:last-of-type{
@@ -57,4 +67,16 @@
   background-color: #d4d4d8;
 }
 
+.btnFunc__newGame {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(225 225 225);
+    border-radius: 999px;
+    padding: 0 24px;
+    font-weight: 600;
+}
 
+.btnFunc__img:hover, .note__badge:hover, .hint__badge:hover {
+    color: #BABAB9;
+}
