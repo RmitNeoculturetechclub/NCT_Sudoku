@@ -7,19 +7,20 @@
   user-select: none;
 }
 .tile {
-  border: 2px solid #dcd6d3; /* Use outline instead of border */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 45px;
-  width: 45px;
-  font-size: 24px;
-  padding: 0px;
+    border: 2px solid #DCD6D3; /* Use outline instead of border */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    font-size: 30px;
+    width: 50px;
+    padding: 0px;
+   
 }
-#row-2,
-#row-5 {
-  border-bottom: 2px solid #dcd6d3; /*it seem like 3px beacase 2px +1px+1px from each title border top and bottom*/
-}
+#row-2, #row-5 {
+    border-bottom: 3px solid #DCD6D3; /*it seem like 3px beacase 2px +1px+1px from each title border top and bottom*/
+  }
+
 #row-0 {
   border-top: 3px solid #dcd6d3;
 }
@@ -40,5 +41,33 @@
   background-color: #A9A9A9;
 }
 .isSelect {
-  background-color: 	#808080;
+    background-color: #5D5C5C!important;
+}
+
+.falseAnswer {
+    color: #D22027;
+}
+.trueAnswer {
+    color: #7BD2F6;
+}
+
+.tile:empty {
+    justify-content: center;
+    align-items: center;
+}
+
+.tile:not(:empty) {
+    flex-wrap: wrap;
+}
+.noteNumber{
+    width: 16px;
+    height: 16px;
+    font-size: 15px;
+    display: none;
+    text-align: center;
+
+}
+
+.wrongBackground{
+    background-color: #e49295;
 }

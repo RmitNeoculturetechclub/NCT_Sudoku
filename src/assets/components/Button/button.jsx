@@ -1,6 +1,20 @@
 import './button.css';
+import React, { useState } from 'react';
 
-function Button() {
+function Button({returnButton, pressNoteButton, note, handleHint, hint, newGame}) {
+  
+
+function openTab(e){
+  let modal = document.getElementById("myModal");
+
+  modal.style.display = "block";
+};
+
+function closeTab(){
+  let modal = document.getElementById("myModal");
+  modal.style.display = "none";
+};
+
   return (
     <div>
       <div className="btnDiff">
@@ -9,10 +23,11 @@ function Button() {
         <div className="btnDiff__i2">Medium</div>
         <div className="btnDiff__i2">Hard</div>
       </div>
+
       <div className="btnFunc__wrap mt-4 mb-2 flex w-[400px] cursor-pointer select-none items-center justify-around gap-6">
         {/* Btn item 1  */}
         <div className="btn__item group truncate flex items-center gap-1 rounded-full bg-[#DBDBDA] py-[10px] pl-[10px] pr-[6px] hover:bg-[#d4d4d8]">
-          <button className="btn__icon btnFunc__img btnFunc__reverse w-fit rounded-full">
+          <button className="onClick={returnButton} btn__icon btnFunc__img btnFunc__reverse w-fit rounded-full">
             <div className="h-7 w-7 text-[#7F7F7F]">
               <svg
                 className="icon"
@@ -32,7 +47,7 @@ function Button() {
 
         {/* Btn item 2  */}
         <div className="btn__item group relative flex items-center gap-0 rounded-full bg-[#DBDBDA] p-[10px] hover:bg-[#d4d4d8]">
-          <button className="btn__icon btnFunc__img btnFunc__hint w-fit rounded-full">
+          <button className="onClick={handleHint} btn__icon btnFunc__img btnFunc__hint w-fit rounded-full">
             <div className="h-7 w-7 text-[#7F7F7F]">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -43,18 +58,18 @@ function Button() {
               </svg>
             </div>
           </button>
-          <div className="btn__text duration-[250ms] w-0 text-[#7F7F7F] opacity-0 transition-all group-hover:ml-1 group-hover:w-8 group-hover:opacity-100">
-            Hint
+          <div className="hint__badge btn__text duration-[250ms] w-0 text-[#7F7F7F] opacity-0 transition-all group-hover:ml-1 group-hover:w-8 group-hover:opacity-100">
+            {hint}
           </div>
 
-          <span className="hint__badge absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-[#7F7F7F] align-middle text-[9px] text-white">
+          <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-[#7F7F7F] align-middle text-[9px] text-white">
             5
           </span>
         </div>
 
         {/* Btn item 3  */}
         <div className="btn__item btn__item3 group relative flex items-center gap-1 text-nowrap rounded-full bg-[#DBDBDA] py-[10px] pl-[10px] pr-[6px] hover:bg-[#d4d4d8]">
-          <button className="btn__icon btnFunc__img btnFunc__note w-fit rounded-full">
+          <button className="onClick={pressNoteButton} btn__icon btnFunc__img btnFunc__note w-fit rounded-full">
             <div className="h-[24px] w-[24px] text-[#7F7F7F]">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -65,31 +80,34 @@ function Button() {
               </svg>
             </div>
           </button>
-          <div className="btn__text duration-[250ms] w-0 text-[#7F7F7F] opacity-0 transition-all group-hover:ml-1 group-hover:w-10 group-hover:opacity-100">
-            Note
+          <div className="note__badge btn__text duration-[250ms] w-0 text-[#7F7F7F] opacity-0 transition-all group-hover:ml-1 group-hover:w-10 group-hover:opacity-100">
+            {note}
           </div>
 
-          <div className="note__badge absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-[#7F7F7F] text-[7.5px] text-white">
+          <div className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-[#7F7F7F] text-[7.5px] text-white">
             ON
           </div>
         </div>
 
         {/* Btn item 4  */}
-        <div className="btn__item btn__item4 group flex items-center gap-1 truncate rounded-full py-[10px] pl-[10px] pr-[6px] bg-[#d4d4d8] hover:bg-[#d4d4d8]">
-          <button className="btn__icon btnFunc__img w-fit rounded-full">
-            <div className="flex h-7 w-7 items-center justify-center text-[#7F7F7F]">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 640 512"
-                fill="currentColor"
-              >
-                <path d="M192 64C86 64 0 150 0 256S86 448 192 448H448c106 0 192-86 192-192s-86-192-192-192H192zM496 168a40 40 0 1 1 0 80 40 40 0 1 1 0-80zM392 304a40 40 0 1 1 80 0 40 40 0 1 1 -80 0zM168 200c0-13.3 10.7-24 24-24s24 10.7 24 24v32h32c13.3 0 24 10.7 24 24s-10.7 24-24 24H216v32c0 13.3-10.7 24-24 24s-24-10.7-24-24V280H136c-13.3 0-24-10.7-24-24s10.7-24 24-24h32V200z" />
-              </svg>
-            </div>
-          </button>
-          <div className="btn_text4 duration-[250ms] text-[#7F7F7F] transition-all ml-1 w-[78px] opacity-100">
-            New game
+          <div className="btnFunc__newGame"  id="openModalBtn" onClick={()=>openTab()}>NEW GAME</div>
+          <div id="myModal" className="modal">
+        <div className="modal-content">
+          <span id="closeModalBtn" className="close" onClick={()=>closeTab()}>&times;</span>
+          <div className='modal-text'>
+          <h1>Level</h1>
+          <div className='diff-btn' onClick={e=>
+           {newGame(e);
+            closeTab()}}>Easy</div>
+          <div className='diff-btn'onClick={e=> 
+          {newGame(e);
+            closeTab()}}>Medium</div>
+          <div className='diff-btn'onClick={e=> 
+          {newGame(e);
+            closeTab()}}>Hard</div>
           </div>
+        </div>
+    </div>
         </div>
       </div>
     </div>
