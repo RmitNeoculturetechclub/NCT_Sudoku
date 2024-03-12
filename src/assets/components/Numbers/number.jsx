@@ -5,28 +5,34 @@ import React, { useState, useRef } from 'react';
 function Numbers(){
     const[number,setNumber] = useState();
     const [note,setNote] = useState("OFF");
-    const [arrNote,setArrayNote] = useState(()=>{
-      const arr = [];
-      for(let i=0; i <9; i++){
-        const arr1 = [];
-        for (let j = 0; j < 9; j++){
-          const arr2 =[];
-          for (let k = 0; k < 9; k++){
-            arr2.push("");
-          };
-          arr1.push(arr2);
-        };
-        arr.push(arr1);
-      };
-      return {arr:arr};
+    const [data, setData] = useState();
+    const [hint, setHint] = useState(5);
+    const[level,setLevel] = useState('easy');
+    const [triggerFetch, setTriggerFetch] = useState(true);
+    const [arrNote, setArrayNote] = useState(() => {
+      return { arr: generateInitialArray() };
     });
 
     const actionList = useRef([]);
-
+    function generateInitialArray() {
+      const arr = [];
+      for (let i = 0; i < 9; i++) {
+        const arr1 = [];
+        for (let j = 0; j < 9; j++) {
+          const arr2 = [];
+          for (let k = 0; k < 9; k++) {
+            arr2.push("");
+          }
+          arr1.push(arr2);
+        }
+        arr.push(arr1);
+      }
+      return arr;
+    }
     function pressNoteButton() {
       setNote(state=> state==="OFF"?"ON":"OFF")
     };
-
+    
     function handlePress(e) {
       const fillBox = document.querySelector(".isSelect");
       // Fill the number in the emty box
@@ -50,7 +56,9 @@ function Numbers(){
 
     function handleReturn(){
       const prevAction = actionList.current.pop();
+      
       if(prevAction && prevAction.value){
+        removeHightlightWrongAnswer(prevAction.value);
         setNumber({
           ...prevAction,
           value:"",
@@ -79,6 +87,79 @@ function Numbers(){
       });
     }
     }
+    function blockRightAnswer(){
+      actionList.current.pop();
+    };
+    function removeHightlightWrongAnswer(action) {
+      const lisTtile =  document.querySelectorAll(".number");
+      lisTtile.forEach(title=>{
+        if(title.textContent == action){
+          title.parentNode.classList.remove("wrongBackground");
+        }
+      })
+    }
+    const handleReceivedData = (data) => {
+      setData(data);
+    };
+    function handleHint(){
+      const classIsSelect = document.querySelector(".isSelect") || "";
+      if (classIsSelect){
+             if(!classIsSelect.querySelector(".number").textContent && hint>0){
+        const numberColum = classIsSelect.classList[1][4];
+        const numberRow = classIsSelect.parentNode.id[4];
+        const answer = data.solution[numberRow][numberColum];
+        classIsSelect.querySelector(".number").textContent = answer;
+        if(classIsSelect.querySelector(".noteNumber").style.display=="block"){
+          const array = classIsSelect.querySelectorAll(".noteNumber");
+          array.forEach(param=>{param.style.display="none"});
+        };
+        setHint(prev=>prev-1);
+      }
+      }
+    };
+
+    function newGame(e){
+      actionList.current = [];
+      const level = e.target.textContent.toLowerCase();
+      setNumber(()=>{
+        const listWrongClass = document.querySelectorAll(".wrongBackground")
+        if(listWrongClass){
+          listWrongClass.forEach(
+            element=>{
+              element.classList.remove('wrongBackground')
+            }
+          );
+        };
+        const listWrongAnser = document.querySelectorAll(".falseAnswer");
+        if(listWrongAnser){
+          listWrongAnser.forEach(
+            element=>{
+              element.classList.remove('falseAnswer')
+            }
+          );
+        };
+        const listNumber = document.querySelectorAll(".number");
+        listNumber.forEach(
+          element=>{
+            element.textContent ="";
+          }
+        );  
+        return "";
+      });
+      setLevel(level);
+      setTriggerFetch(prev => !prev);
+      setHint(5);
+      setNote("OFF");
+      setArrayNote(() => { 
+        const listNote = document.querySelectorAll(".noteNumber");
+        listNote.forEach(element=>{
+          if(element.style.display =="block"){
+            element.style.display = "none";
+          }
+        })
+        return { arr: generateInitialArray() };
+      });
+    }
     // Template
     const buttons = [];
     for (let i = 1; i <= 9; i++) {
@@ -98,8 +179,10 @@ function Numbers(){
   
     return (
       <>
-      <Button returnButton ={handleReturn} pressNoteButton ={pressNoteButton} note ={note}></Button>
-      <Table pressNumber={number} note ={note} arrNote= {arrNote}/>
+      <Button returnButton ={handleReturn} pressNoteButton ={pressNoteButton} note ={note} hint={hint} handleHint= {handleHint}
+        newGame= {newGame}></Button>
+      <Table pressNumber={number} note ={note} arrNote= {arrNote} actionList ={actionList} sendBackParentdata = {handleReceivedData}
+        levelChose= {level} triggerFetch = {triggerFetch}/>
       <div id="numberContainer">
         {buttons}
       </div>
