@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import "./table.css";
-function Table({pressNumber, note, arrNote}) {
-  
+function Table({pressNumber, note, arrNote, actionList, sendBackParentdata, levelChose, triggerFetch}) {
   const [data, setData] = useState(); // Initialize state for the fetched data
-
   useEffect(() => {
-    fetch('https://sugoku.onrender.com/board?difficulty=easy')
+    fetch(`https://sugoku.onrender.com/board?difficulty=${levelChose}`)
       .then(response => response.json())
       .then(board => {setData(prev=>({...prev, value:board}));
         return board
@@ -16,21 +14,23 @@ function Table({pressNumber, note, arrNote}) {
         body: encodeParams(board),
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
         })
-        // .then(()=>console.log("post game data"))
         .then(response => response.json())
-        .then(response => setData(prev=>({...prev,answer: response})))
+        .then(response => {setData(prev=>({...prev,answer: response}));
+                                    return response;})
+        .then(response=> sendBackParentdata(response))
         .catch(console.warn)
       ))
       .catch(error => {
         console.error('Error fetching data:', error);
       });
-  }, []);
-  
+  }, [levelChose, triggerFetch]);
   useEffect(() => {
     // Fill the number press in the box or set emty when press return
     if (pressNumber) {
       const selectBox = document.querySelector(`#row-${pressNumber.row}`).querySelector(`.col-${pressNumber.colum}`);
       selectBox.querySelector(".number").textContent = pressNumber.value;
+      // const dataFill = data.value.board[pressNumber.row][pressNumber.colum];
+      // dataFill = pressNumber.value;
       // When return the current step, clear the class
       if (!pressNumber.value) {
         selectBox.classList.remove("falseAnswer");
@@ -42,12 +42,15 @@ function Table({pressNumber, note, arrNote}) {
       if(rigntAnswer == pressNumber.value){
         // console.log("true");
         const selectBox = document.querySelector(`#row-${pressNumber.row}`).querySelector(`.col-${pressNumber.colum}`);
-        selectBox.classList.add("trueAnswer")
+        selectBox.classList.add("trueAnswer");
+        setTimeout(()=>{selectBox.classList.remove("trueAnswer")},2000);
+        blockRightAnswer(actionList);
       }
       else{
       //  console.log("false");
        const selectBox = document.querySelector(`#row-${pressNumber.row}`).querySelector(`.col-${pressNumber.colum}`);
-       selectBox.classList.add("falseAnswer")
+       selectBox.classList.add("falseAnswer");
+       hightlightWrongAnswer(pressNumber.value);
        }
     }
   }, [pressNumber,data]);
@@ -77,7 +80,6 @@ function Table({pressNumber, note, arrNote}) {
     highlightSmallTable(element);
     highlightSelect(element);
   };
-  
   const clearActiveAndSelectClasses = () => {
     const listActive = document.getElementsByClassName("isActive");
     [...listActive].forEach((element) => {
@@ -130,7 +132,18 @@ function Table({pressNumber, note, arrNote}) {
     .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(JSON.stringify(params[key])))
     .join('&');
 }
-  
+  function hightlightWrongAnswer(value) {
+    const lisTtile =  document.querySelectorAll(".number");
+    lisTtile.forEach(title=>{
+      if(title.textContent == value){
+        title.parentNode.classList.add("wrongBackground");
+      }
+    })
+  }
+
+  function blockRightAnswer(actionList){
+    actionList.current.pop();
+  };
   // Template 
   if (!data) {
     return <div>Loading...</div>;
@@ -148,7 +161,7 @@ function Table({pressNumber, note, arrNote}) {
       )}
     </div>
   );
-
+  
   return <><div id='table'>{tableContent}</div></>;
 }
 

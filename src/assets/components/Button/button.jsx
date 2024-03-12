@@ -1,7 +1,19 @@
 import './button.css';
 import React, { useState } from 'react';
 
-function Button({returnButton, pressNoteButton, note}) {
+function Button({returnButton, pressNoteButton, note, handleHint, hint, newGame}) {
+  
+
+function openTab(e){
+  let modal = document.getElementById("myModal");
+
+  modal.style.display = "block";
+};
+
+function closeTab(){
+  let modal = document.getElementById("myModal");
+  modal.style.display = "none";
+};
 
   return (
     <div>
@@ -38,11 +50,12 @@ function Button({returnButton, pressNoteButton, note}) {
             </svg>
 
           </div>
+
         </div>
 
         {/* Btn item 2  */}
         <div className="btn__item group relative flex items-center gap-0 rounded-full bg-[#DBDBDA] p-[10px] hover:bg-[#d4d4d8]">
-          <button className="btn__icon btnFunc__img btnFunc__hint w-fit rounded-full">
+          <button className="btn__icon btnFunc__img btnFunc__hint w-fit rounded-full onClick={handleHint}">
             <div className="h-7 w-7 text-[#7F7F7F]">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -53,8 +66,8 @@ function Button({returnButton, pressNoteButton, note}) {
               </svg>
             </div>
           </button>
-          <div className="btn__text duration-[250ms] w-0 text-[#7F7F7F] opacity-0 transition-all group-hover:ml-1 group-hover:w-8 group-hover:opacity-100">
-            Hint
+          <div className="hint__badge btn__text duration-[250ms] w-0 text-[#7F7F7F] opacity-0 transition-all group-hover:ml-1 group-hover:w-8 group-hover:opacity-100">
+            {hint}
           </div>
 
           <span className="hint__badge absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-[#7F7F7F] align-middle text-[9px] text-white">
@@ -91,6 +104,7 @@ function Button({returnButton, pressNoteButton, note}) {
           </div>
         </div>
 
+
         {/* Btn item 4  */}
         <div className="btn__item btn__item4 group flex items-center gap-1 truncate rounded-full py-[10px] pl-[10px] pr-[6px] bg-[#d4d4d8] hover:bg-[#d4d4d8]">
           <button className="btn__icon btnFunc__img w-fit rounded-full">
@@ -107,6 +121,26 @@ function Button({returnButton, pressNoteButton, note}) {
           <div className="btn_text4 duration-[250ms] text-[#7F7F7F] transition-all ml-1 w-[78px] opacity-100">
             New game
           </div>
+
+          <div className="btnFunc__newGame"  id="openModalBtn" onClick={()=>openTab()}>NEW GAME</div>
+          <div id="myModal" className="modal">
+        <div className="modal-content">
+          <span id="closeModalBtn" className="close" onClick={()=>closeTab()}>&times;</span>
+          <div className='modal-text'>
+          <h1>Level</h1>
+          <div className='diff-btn' onClick={e=>
+           {newGame(e);
+            closeTab()}}>Easy</div>
+          <div className='diff-btn'onClick={e=> 
+          {newGame(e);
+            closeTab()}}>Medium</div>
+          <div className='diff-btn'onClick={e=> 
+          {newGame(e);
+            closeTab()}}>Hard</div>
+          </div>
+        </div>
+    </div>
+
         </div>
       </div>
     </div>

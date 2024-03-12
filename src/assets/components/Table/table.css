@@ -55,7 +55,7 @@
   background-color: #A9A9A9;
 }
 .isSelect {
-  background-color: 	#808080;
+    background-color: #5D5C5C!important;
 }
 
 .falseAnswer {
@@ -78,4 +78,9 @@
     height: 16px;
     font-size: 15px;
     display: none;
+    text-align: center;
+}
+
+.wrongBackground{
+    background-color: #e49295;
 }
