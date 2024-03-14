@@ -95,3 +95,61 @@
 .btnFunc__img:hover, .note__badge:hover, .hint__badge:hover {
     color: #BABAB9;
 }
+
+
+.modal {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* Modal Content */
+.modal-content {
+    position: fixed; /* or absolute */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    padding: 20px;
+    width: 20%;
+    border-radius: 5%;
+    box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.3);
+}
+
+.modal-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.diff-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #BABAB9;
+    text-align: center;
+    margin: 2% auto;
+    width: 50%;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.close:hover,
+.close:focus {
+    color: #ff5b5b;
+}
