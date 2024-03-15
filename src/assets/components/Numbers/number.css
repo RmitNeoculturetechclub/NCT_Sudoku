@@ -1,16 +1,15 @@
 button {
     border: none;
     text-align: center;
-    line-height: 60px;
-    font-size: 30px;
-    width: 60px;
-    font-weight: 500;
+    line-height: 38px;
+    font-size: 21px;
+    width: 50px;
     font-family: inherit;
     cursor: pointer;
     transition: border-color 0.25s;
     background-color: #DBDBDA;
-    margin: 0px 2px;
-  } 
+  }
+
   button:hover {
    color: #BABAB9;
   }

@@ -16,7 +16,7 @@ function closeTab(){
 };
 
   return (
-    <div>
+    <div className='btnWarp'>
       <div className="btnDiff">
         <div className="btnDiff__i1">LEVEL:</div>
         <div className="btnDiff__i2">Easy</div>
