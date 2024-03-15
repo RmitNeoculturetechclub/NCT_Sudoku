@@ -4,7 +4,7 @@
 }
 .tableRow {
     display: flex;
-    
+    user-select: none;
 }
 .tile {
     border: 2px solid #DCD6D3; /* Use outline instead of border */
