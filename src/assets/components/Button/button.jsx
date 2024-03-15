@@ -18,7 +18,7 @@ function closeTab(){
   return (
     <div>
       <div className="btnDiff">
-        <div className="btnDiff__i1">Difficulty:</div>
+        <div className="btnDiff__i1">LEVEL:</div>
         <div className="btnDiff__i2">Easy</div>
         <div className="btnDiff__i2">Medium</div>
         <div className="btnDiff__i2">Hard</div>
