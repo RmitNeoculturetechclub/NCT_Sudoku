@@ -29,9 +29,9 @@
 
 .btnFunc__wrap {
     margin: 18px 0 8px;
+    padding: 0 24px;
     display: flex;
-    gap: 24px; 
-    justify-items: center;
+    gap: 32px; 
 }
 
 .btnFunc__img {

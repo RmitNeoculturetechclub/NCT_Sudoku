@@ -11,9 +11,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 45px;
-    font-size: 24px;
-    width: 45px;
+    height: 42px;
+    font-size: 22px;
+    width: 42px;
 }
 #row-2, #row-5 {
     border-bottom: 2px solid #DCD6D3; /*it seem like 3px beacase 2px +1px+1px from each title border top and bottom*/

@@ -1,9 +1,9 @@
 button {
     border: none;
     text-align: center;
-    line-height: 38px;
-    font-size: 21px;
-    width: 50px;
+    line-height: 32px;
+    font-size: 20px;
+    width: 47px;
     font-family: inherit;
     cursor: pointer;
     transition: border-color 0.25s;
