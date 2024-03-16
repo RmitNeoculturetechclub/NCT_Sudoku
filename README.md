@@ -10,7 +10,7 @@
 
 ### Prerequisite
 - HTML5 Doctype
-- npm --version (10.2.3)
+- npm version (10.2.3)
 
 ### Contribute
 This project was created using a template that includes a basic setup for getting React functioning in Vite with HMR and some ESLint rules.
