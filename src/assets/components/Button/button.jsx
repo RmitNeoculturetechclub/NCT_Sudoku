@@ -1,5 +1,6 @@
 import "./button.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from 'react';
+
 
 function Button({
   returnButton,
@@ -8,7 +9,32 @@ function Button({
   handleHint,
   hint,
   newGame,
+  returnBack,
+  data,
 }) {
+  const [seconds, setSeconds] = useState(0);
+  const [minutes, setMinutes] = useState(0);
+
+  useEffect(() => {
+    if(data){
+      const interval = setInterval(() => {
+        setSeconds((prevSeconds) => {
+          if (prevSeconds === 59) {
+            setMinutes((prevMinutes) => prevMinutes + 1);
+            return 0;
+          } else {
+            return prevSeconds + 1;
+          }
+        });
+      }, 1000);
+      return () => clearInterval(interval);
+    }
+  }, [data]); // Empty dependency array ensures the effect runs only once
+
+  const handleResetTime = () => {
+    setSeconds(0);
+    setMinutes(0);
+  };
   function openTab(e) {
     let modal = document.getElementById("myModal");
 
@@ -22,14 +48,9 @@ function Button({
 
   return (
     <div className="btnWarp">
-      <div className="btnDiff">
-        <div className="btnDiff__i1">LEVEL:</div>
-        <div className="btnDiff__i2">Easy</div>
-        <div className="btnDiff__i2">Medium</div>
-        <div className="btnDiff__i2">Hard</div>
-      </div>
       <div className="btnFunc__wrap">
-        <div className="btnFunc__img btnFunc__reverse" onClick={returnButton}>
+        <div className="timer">{minutes < 10 ? '0' + minutes : minutes}:{seconds < 10 ? '0' + seconds : seconds}</div>
+        <div className="btnFunc__img btnFunc__reverse  btnFunc__hint" onClick={returnButton}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 512 512"
@@ -37,6 +58,7 @@ function Button({
           >
             <path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z" />
           </svg>
+          <span className="hint__badge">{returnBack}</span>
         </div>
         <div className="btnFunc__img btnFunc__hint" onClick={handleHint}>
           <svg
@@ -82,6 +104,7 @@ function Button({
                 onClick={(e) => {
                   newGame(e);
                   closeTab();
+                  handleResetTime()
                 }}
               >
                 Easy
@@ -91,6 +114,7 @@ function Button({
                 onClick={(e) => {
                   newGame(e);
                   closeTab();
+                  handleResetTime()
                 }}
               >
                 Medium
@@ -100,6 +124,7 @@ function Button({
                 onClick={(e) => {
                   newGame(e);
                   closeTab();
+                  handleResetTime()
                 }}
               >
                 Hard

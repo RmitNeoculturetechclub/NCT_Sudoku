@@ -37,8 +37,8 @@
 
 .btnFunc__img {
     display: flex;
-    height: 24px;
-    width: 24px;
+    height: 20px;
+    width: 20px;
     border-radius: 50%;
     padding: 10px;
     background-color: rgb(225 225 225);
@@ -162,4 +162,14 @@
 .close:hover,
 .close:focus {
     color: #ff5b5b;
+}
+
+.timer {
+    text-align: center;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(127 127 127);
+    /* font-weight: bold; */
 }
