@@ -218,7 +218,7 @@ function Numbers(){
     return (
       <>
       <Button returnButton ={handleReturn} pressNoteButton ={pressNoteButton} note ={note} hint={hint} handleHint= {handleHint}
-        newGame= {newGame} returnBack= {returnBack}></Button>
+        newGame= {newGame} returnBack= {returnBack} data= {data}></Button>
       <Table pressNumber={number} note ={note} arrNote= {arrNote} actionList ={actionList} sendBackParentdata = {handleReceivedData}
         levelChose= {level} triggerFetch = {triggerFetch}/>
       <div id="numberContainer">

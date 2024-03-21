@@ -10,23 +10,26 @@ function Button({
   hint,
   newGame,
   returnBack,
+  data,
 }) {
   const [seconds, setSeconds] = useState(0);
   const [minutes, setMinutes] = useState(0);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setSeconds((prevSeconds) => {
-        if (prevSeconds === 59) {
-          setMinutes((prevMinutes) => prevMinutes + 1);
-          return 0;
-        } else {
-          return prevSeconds + 1;
-        }
-      });
-    }, 1000);
-    return () => clearInterval(interval);
-  }, []); // Empty dependency array ensures the effect runs only once
+    if(data){
+      const interval = setInterval(() => {
+        setSeconds((prevSeconds) => {
+          if (prevSeconds === 59) {
+            setMinutes((prevMinutes) => prevMinutes + 1);
+            return 0;
+          } else {
+            return prevSeconds + 1;
+          }
+        });
+      }, 1000);
+      return () => clearInterval(interval);
+    }
+  }, [data]); // Empty dependency array ensures the effect runs only once
 
   const handleResetTime = () => {
     setSeconds(0);
