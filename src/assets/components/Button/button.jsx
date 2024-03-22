@@ -1,6 +1,13 @@
 import "./button.css";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
+import Slider from "@mui/material/Slider";
+import devilIcon from "./devil.png";
+import PlayButton from "@mui/material/Button";
+import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 
+function valuetext(value) {
+  return ``;
+}
 
 function Button({
   returnButton,
@@ -14,9 +21,15 @@ function Button({
 }) {
   const [seconds, setSeconds] = useState(0);
   const [minutes, setMinutes] = useState(0);
+  const [difficultyLevel, setDifficultyLevel] = useState(0);
 
   useEffect(() => {
-    if(data){
+    // Set the initial difficulty level when the component mounts
+    setDifficultyLevel(1);
+  }, []);
+
+  useEffect(() => {
+    if (data) {
       const interval = setInterval(() => {
         setSeconds((prevSeconds) => {
           if (prevSeconds === 59) {
@@ -30,6 +43,22 @@ function Button({
       return () => clearInterval(interval);
     }
   }, [data]); // Empty dependency array ensures the effect runs only once
+
+  function handlePlayButtonClick() {
+    let level;
+    // Determine level based on the difficulty level
+    if (difficultyLevel === 1) {
+      level = "easy";
+    } else if (difficultyLevel === 2) {
+      level = "medium";
+    } else if (difficultyLevel === 3) {
+      level = "hard";
+    }
+    // Call newGame function with determined level
+    newGame(level);
+    closeTab();
+    handleResetTime();
+  }
 
   const handleResetTime = () => {
     setSeconds(0);
@@ -49,8 +78,14 @@ function Button({
   return (
     <div className="btnWarp">
       <div className="btnFunc__wrap">
-        <div className="timer">{minutes < 10 ? '0' + minutes : minutes}:{seconds < 10 ? '0' + seconds : seconds}</div>
-        <div className="btnFunc__img btnFunc__reverse  btnFunc__hint" onClick={returnButton}>
+        <div className="timer">
+          {minutes < 10 ? "0" + minutes : minutes}:
+          {seconds < 10 ? "0" + seconds : seconds}
+        </div>
+        <div
+          className="btnFunc__img btnFunc__reverse btnFunc__hint"
+          onClick={returnButton}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 512 512"
@@ -99,36 +134,50 @@ function Button({
             </span>
             <div className="modal-text">
               <h1>Level</h1>
-              <div
-                className="diff-btn"
-                onClick={(e) => {
-                  newGame(e);
-                  closeTab();
-                  handleResetTime()
-                }}
-              >
-                Easy
+              <div className="icons-container">
+                {/* Conditionally render devil icons based on difficulty level */}
+                {[...Array(difficultyLevel)].map((_, index) => (
+                  <div key={index} className="icon-container">
+                    <img
+                      src={devilIcon}
+                      alt="DevilIconLogo"
+                      style={{ width: "50px", height: "auto", transition: "0.4s" }}
+                    />
+                  </div>
+                ))}
               </div>
-              <div
-                className="diff-btn"
-                onClick={(e) => {
-                  newGame(e);
-                  closeTab();
-                  handleResetTime()
-                }}
-              >
-                Medium
+              <div className="slider">
+                <Slider
+                  aria-label="Custom marks"
+                  defaultValue={0}
+                  getAriaValueText={valuetext}
+                  step={50}
+                  marks={[
+                    { value: 0, label: "Easy" },
+                    { value: 50, label: "Medium" },
+                    { value: 100, label: "Hard" },
+                  ]}
+                  color=""
+                  sx={{
+                    color: "#212121",
+                    marginTop: "1rem",
+                  }}
+                  onChange={(e, value) => setDifficultyLevel(value / 50 + 1)} // Update difficulty level
+                />
               </div>
-              <div
-                className="diff-btn"
-                onClick={(e) => {
-                  newGame(e);
-                  closeTab();
-                  handleResetTime()
+              <PlayButton
+                onClick={handlePlayButtonClick}
+                variant="contained"
+                sx={{
+                  width: 100,
+                  color: "#f5f5f5",
+                  backgroundColor: "#212121",
+                  marginTop: "1rem",
                 }}
+                endIcon={<PlayArrowIcon />}
               >
-                Hard
-              </div>
+                Play
+              </PlayButton>
             </div>
           </div>
         </div>

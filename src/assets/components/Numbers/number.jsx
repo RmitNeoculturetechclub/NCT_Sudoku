@@ -141,63 +141,63 @@ function Numbers(){
       }
     };
 
-    function newGame(e){
+    function newGame(level) {
       actionList.current = [];
-      const level = e.target.textContent.toLowerCase();
-      setNumber(()=>{
-        const listWrongClass = document.querySelectorAll(".wrongBackground")
-        if(listWrongClass){
-          listWrongClass.forEach(
-            element=>{
-              element.classList.remove('wrongBackground')
-            }
-          );
-        };
-        const listWrongAnser = document.querySelectorAll(".falseAnswer");
-        if(listWrongAnser){
-          listWrongAnser.forEach(
-            element=>{
-              element.classList.remove('falseAnswer')
-            }
-          );
-        };
-        const listNumber = document.querySelectorAll(".number");
-        listNumber.forEach(
-          element=>{
-            element.textContent ="";
-          }
-        );  
-        return "";
+      setNumber(() => {
+      const listWrongClass = document.querySelectorAll(".wrongBackground")
+      if (listWrongClass) {
+      listWrongClass.forEach(
+      element => {
+      element.classList.remove('wrongBackground')
+      }
+      );
+      };
+      const listWrongAnser = document.querySelectorAll(".falseAnswer");
+      if (listWrongAnser) {
+      listWrongAnser.forEach(
+      element => {
+      element.classList.remove('falseAnswer')
+      }
+      );
+      };
+      const listNumber = document.querySelectorAll(".number");
+      listNumber.forEach(
+      element => {
+      element.textContent = "";
+      }
+      );
+      return "";
       });
       setLevel(level);
       setTriggerFetch(prev => !prev);
       setNote("OFF");
-      switch(level) {
-        case "easy":
-          setHint(5);
-          setReturnBack(5);
-          break;
-        case "medium":
-          setHint(5);
-          setReturnBack(3);
-          break;
-          case "hard":
-          setHint(3);
-          setReturnBack(3);
-          break;
-        default:
-          console.log("error");
+      switch (level) {
+      case "easy":
+      setHint(5);
+      setReturnBack(5);
+      break;
+      case "medium":
+      setHint(5);
+      setReturnBack(3);
+      break;
+      case "hard":
+      setHint(3);
+      setReturnBack(3);
+      break;
+      default:
+      console.log("error");
       }
-      setArrayNote(() => { 
-        const listNote = document.querySelectorAll(".noteNumber");
-        listNote.forEach(element=>{
-          if(element.style.display =="block"){
-            element.style.display = "none";
-          }
-        })
-        return { arr: generateInitialArray() };
+      setArrayNote(() => {
+      const listNote = document.querySelectorAll(".noteNumber");
+      listNote.forEach(element => {
+      if (element.style.display == "block") {
+      element.style.display = "none";
+      }
+      })
+      return { arr: generateInitialArray() };
       });
-    }
+      }
+      
     // Template
     const buttons = [];
     for (let i = 1; i <= 9; i++) {
