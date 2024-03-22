@@ -224,7 +224,7 @@ function Numbers(){
       <div id="numberContainer">
         {buttons}
       </div>
-      <div className="copyright">© 2024 RMIT Neo Culture Tech Club. All rights reserved. <a href="https://github.com/RmitNeoculturetechclub/NCT_Sudoku">GitHub</a></div>
+      <div className="copyright">© 2024 RMIT Neo Culture Tech Club. All rights reserved. <a href="https://github.com/RmitNeoculturetechclub/NCT_Sudoku" target="blank">GitHub</a></div>
       </>
     );
   }
