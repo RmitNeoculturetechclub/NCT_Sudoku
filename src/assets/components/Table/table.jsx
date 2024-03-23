@@ -1,28 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import "./table.css";
+import { generateSudoku } from './sudoku.js/generateSudoku';
 function Table({pressNumber, note, arrNote, actionList, sendBackParentdata, levelChose, triggerFetch}) {
   const [data, setData] = useState(); // Initialize state for the fetched data
   useEffect(() => {
-    fetch(`https://sugoku.onrender.com/board?difficulty=${levelChose}`)
-      .then(response => response.json())
-      .then(board => {setData(prev=>({...prev, value:board}));
-        return board
-      })
-      .then(board=>(
-        fetch('https://sugoku.onrender.com/solve', {
-        method: 'POST',
-        body: encodeParams(board),
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-        })
-        .then(response => response.json())
-        .then(response => {setData(prev=>({...prev,answer: response}));
-                                    return response;})
-        .then(response=> sendBackParentdata(response))
-        .catch(console.warn)
-      ))
-      .catch(error => {
-        console.error('Error fetching data:', error);
-      });
+      const value =generateSudoku(levelChose);
+      setData(value)
+      sendBackParentdata(value);
   }, [levelChose, triggerFetch]);
   useEffect(() => {
     // Fill the number press in the box or set emty when press return
@@ -124,14 +108,7 @@ function Table({pressNumber, note, arrNote, actionList, sendBackParentdata, leve
   const highlightSelect = (el)=> {
     el.classList.add("isSelect")
   }
-  const handleNoteClick = (e) => {
-    e.target.parentNode.classList.add("isSelect");
-  };
-  function encodeParams(params) {
-  return Object.keys(params)
-    .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(JSON.stringify(params[key])))
-    .join('&');
-}
+
   function hightlightWrongAnswer(value) {
     const lisTtile =  document.querySelectorAll(".number");
     lisTtile.forEach(title=>{
@@ -153,7 +130,7 @@ function Table({pressNumber, note, arrNote, actionList, sendBackParentdata, leve
     <div key={rowIndex} className='tableRow'id={`row-${rowIndex}`}>
       {row.map((value, colIndex) =>
         <div key={colIndex} className={`tile col-${colIndex}`}  onClick={(e) => handleClick(e)}>
-          <div className='number'>{value!=0?value:""}</div>
+          <div className='number'>{value!="."?value:""}</div>
           {arrayNote.map((numNote,index)=>
           <div key={index} className='noteNumber' >
           </div>)}

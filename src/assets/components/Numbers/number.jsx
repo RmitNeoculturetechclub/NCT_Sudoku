@@ -130,7 +130,7 @@ function Numbers(){
              if(!classIsSelect.querySelector(".number").textContent && hint>0){
         const numberColum = classIsSelect.classList[1][4];
         const numberRow = classIsSelect.parentNode.id[4];
-        const answer = data.solution[numberRow][numberColum];
+        const answer = data.answer.solution[numberRow][numberColum];
         classIsSelect.querySelector(".number").textContent = answer;
         if(classIsSelect.querySelector(".noteNumber").style.display=="block"){
           const array = classIsSelect.querySelectorAll(".noteNumber");
