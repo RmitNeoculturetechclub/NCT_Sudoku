@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import "./table.css";
-import { generateSudoku } from './sudokuGenerate/generateSudoku';
+import { generateSudoku } from './sudoku/generateSudoku';
 function Table({pressNumber, note, arrNote, actionList, sendBackParentdata, levelChose, triggerFetch}) {
   const [data, setData] = useState(); // Initialize state for the fetched data
   useEffect(() => {
